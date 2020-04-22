@@ -1,57 +1,54 @@
-import React, {Component, Fragment}from 'react';
+import React, {useState, useCallback}from 'react';
 
 
-class Carrousel extends Component
+function Carrousel(props)
 {
 
-    state= {
-        actual: 0
-      }
-  
 
-    render()
+    const [actual, setActual] = useState(0);
+
+      
+    const onClickGoButton = useCallback((children) => 
     {
-        const {children} = this.props
+            
+        if(actual == children.length - 1)
+        {
+            setActual(0)
+        }
+        else
+        {
+            setActual(actual + 1)
+        }
+
+    }, [actual]);
+
+    const onClickBackButton = useCallback((children) => 
+    {
+            
+        if(actual == 0)
+        {
+            setActual(children.length -1);
+        }
+        else
+        {
+            setActual(actual -1 );
+        }
+
+    }, [actual]);
+      
+
         return(
             <>
             
-                <img src="https://i.ya-webdesign.com/images/video-button-png-18.png" width="70" height="70" onClick={this.onClickGoButton}/>    
+                <img src="https://i.ya-webdesign.com/images/video-button-png-18.png" width="70" height="70" onClick={() => onClickGoButton(props.children)}/>    
             
-            
-            <Fragment>
-                {children[this.state.actual]}
-            </Fragment>
-        
-            
-                <img src="back.png" width="70" height="70" onClick={this.onClickBackButton} />
+                {props.children[actual]}
+          
+                <img src="back.png" width="70" height="70" onClick={() => onClickBackButton(props.children)} />
         
             </>
         )
-    }
 
-    onClickGoButton= () => {
-  
-        if(this.state.actual == this.props.children.length - 1)
-        {
-            this.setState({ actual: 0});
-        }
-        else
-        {
-            this.setState({ actual: this.state.actual +1 });
-        }
-      } 
-  
-      onClickBackButton= () => {
-  
-        if(this.state.actual == 0)
-        {
-            this.setState({ actual: this.props.children.length -1 });
-        }
-        else
-        {
-            this.setState({ actual: this.state.actual -1 });
-        }
-      } 
-}
+    }     
 
 export default Carrousel;

@@ -1,18 +1,16 @@
-import React, {Component}from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class Content1 extends Component
+function Content1()
 {
 
-    render()
-    {
-        return(
+    return(
 
-            <img src={logo} className="App-logo" alt="logo" />
-            
-        )
-    }
+        <img src={logo} className="App-logo" alt="logo" />
+
+    )
+    
 }
 
 export default Content1;

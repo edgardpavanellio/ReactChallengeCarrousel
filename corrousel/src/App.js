@@ -5,10 +5,10 @@ import Content1 from './Content1';
 import Content2 from './Content2';
 import Content3 from './Content3';
 import Carrousel from './Carrousel';
+import ContentCounterWithAlert from './ContentCounterWithAlert';
 
-class App extends Component {
-
-  render(){
+function App()
+{
 
   return (
     <div className="App">
@@ -18,11 +18,13 @@ class App extends Component {
         <Content1 />
         <Content2 />
         <Content3 />
+        <h1>teste</h1>
+        <ContentCounterWithAlert />
       </Carrousel>  
        
       </div>
     </div>
-  );
-}
+  )
+
 }
 export default App;
