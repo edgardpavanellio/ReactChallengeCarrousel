@@ -5,30 +5,27 @@ function ContentCounterWithAlert()
 {
     const [counter, setCounter] = useState(0);
 
-    function countCounter() 
-    {
-        setCounter(counter+1)
-        alert(counter+1)
-
-    }
-
+  
     useEffect(() => {
         alert("componentDidMount")
+
+        return () => {
+            alert("componentWillUnmount")
+            }
+
     }, [])
 
     useEffect(() => {
-        
-        return () => {
-        alert("componentWillUnmount")
-        }
-    }, [])
+        document.title = `You clicked ${counter} times`;
+        alert(counter);
+      }, [counter]); 
 
 
     return(
         <>
         {counter}
 
-        <button onClick={() => countCounter()}>
+        <button onClick={() => setCounter(counter+1)}>
          Contador
         </button>
         </>
